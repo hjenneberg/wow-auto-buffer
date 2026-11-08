@@ -147,14 +147,15 @@ function Api.GetFullName(unit)
 	return best
 end
 
--- Wraps the name in the unit's class color (white if unknown)
-function Api.ColorByClass(name, unit)
-	local class
+-- Localized class name for a class token like "PRIEST"
+function Api.GetClassName(class)
+	local names = LOCALIZED_CLASS_NAMES_MALE
 
-	if unit then
-		_, class = UnitClass(unit)
-	end
+	return (names and names[class]) or class
+end
 
+-- Wraps the text in the color of the class token (white if unknown)
+function Api.ColorByClass(name, class)
 	local colors = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS
 	local color = class and colors and colors[class]
 

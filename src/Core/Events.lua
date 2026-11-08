@@ -18,6 +18,11 @@ EventFrame:SetScript("OnEvent", function(_, event, ...)
 		AutoBufferCharDB = AutoBufferCharDB or {}
 		addon.db = AutoBufferCharDB
 
+		AutoBufferDB = AutoBufferDB or {}
+		addon.accountDb = AutoBufferDB
+
+		addon.Stats:Initialize(addon.db, addon.accountDb)
+
 		if addon.db.nameplates == nil then
 			addon.db.nameplates = true
 		end

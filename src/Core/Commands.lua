@@ -26,6 +26,9 @@ local function PrintHelp()
 	PrintCommand("others", "Toggle other players (nameplates): " .. OnOff(addon.db.nameplates))
 	PrintCommand("group", "Toggle yourself and your group/raid (buffing and report): " .. OnOff(addon.db.group))
 	PrintCommand("report", "Toggle chat report of each buff: " .. OnOff(addon.db.report))
+	PrintCommand("stats", "Show the statistics of this character")
+	PrintCommand("stats account", "Show the statistics of all characters")
+	PrintCommand("stats reset", "Delete the statistics of this character")
 	PrintCommand("show | hide", "Show or hide the button")
 	PrintCommand("reset", "Move the button back to its initial position")
 	addon.PrintLine("Key binding: Options > Keybindings > AddOns > AutoBuffer")
@@ -71,6 +74,29 @@ local function ToggleReport()
 	addon.Print("Report: " .. OnOff(addon.db.report))
 end
 
+local function ShowStats(argument)
+	argument = argument:lower()
+
+	if argument == "reset" then
+		addon.Print("This deletes the statistics of this character. Type /autobuff stats reset confirm")
+
+		return
+	end
+
+	if argument == "reset confirm" then
+		addon.Stats:ResetCharacter()
+		addon.Print("Statistics of this character deleted. The account totals were kept.")
+
+		return
+	end
+
+	if argument == "account" then
+		addon.StatsView:Print("account")
+	else
+		addon.StatsView:Print()
+	end
+end
+
 local function ShowButton()
 	addon.db.hidden = false
 	addon.Button:ApplyVisibility()
@@ -92,6 +118,7 @@ local commands = {
 	others = ToggleOthers,
 	group = ToggleGroup,
 	report = ToggleReport,
+	stats = ShowStats,
 	show = ShowButton,
 	hide = HideButton,
 	reset = ResetPosition,

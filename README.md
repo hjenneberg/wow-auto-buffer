@@ -25,6 +25,8 @@ the next player in range who is missing your buff. You only press one key.
 - Optionally includes yourself and your group/raid
 - Shows how many players in range still need the buff
 - Optional chat report of each buff, with player names in class colors
+- Statistics per character and for all characters: buffs per spell, different players, top players, classes, levels,
+  zones, streaks and records
 
 ## 📦 Download & Installation
 
@@ -51,11 +53,22 @@ Options > Keybindings > AddOns > AutoBuffer > "Buff next player"
 - Use `/autobuff others` to toggle buffing other players (requires friendly nameplates, [Shift] + V)
 - Use `/autobuff group` to toggle yourself and your group/raid (buffing and report)
 - Use `/autobuff report` to toggle the chat report
+- Use `/autobuff stats` to show the statistics of this character
+- Use `/autobuff stats account` to show the statistics of all characters
+- Use `/autobuff stats reset` to delete the statistics of this character (the account totals are kept)
 - Use `/autobuff hide` to hide the button (the key binding still works)
 - Use `/autobuff show` to show the button after you have hidden it
 - Use `/autobuff reset` to move the button back to its initial position
 
 `/abuff` works as a short alias.
+
+### Statistics
+
+Every successful buff on a friendly player is counted, whether the report is on or off. The same rules as for the
+button apply: yourself and your group/raid only count when `/autobuff group` is on. Buffs on NPCs are never counted.
+
+The names of buffed players are saved locally in your SavedVariables to count different players and to show your top
+players.
 
 ### Limitations
 

@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Added statistics per character and for all characters (`/autobuff stats`, `/autobuff stats account`)
+- Added buffs per spell, different players, top players, classes, levels and top zones to the statistics
+- Added active days, streaks and records (per minute, per session) to the statistics
+- Added today's and total buffs to the button tooltip
+- Added `/autobuff stats reset` to delete the statistics of the current character
+
 ## [0.1.0] - 2026-11-08
 
 ### Added
