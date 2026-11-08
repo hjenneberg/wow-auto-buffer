@@ -1,0 +1,23 @@
+## Interface: 16001
+## Title: Auto|cFFFFFFFFBuffer|r
+## Notes: Buffs the next player missing the selected buff, one key press at a time
+## Author: HJenneberg
+## Version: 0.1.0
+## RequiredDeps:
+## SavedVariables:
+## SavedVariablesPerCharacter: AutoBufferCharDB
+
+src/AutoBuffer.lua
+
+src/Util/Api.lua
+
+src/Data/Presets.lua
+
+src/Core/Buffs.lua
+src/Core/Scanner.lua
+
+src/UI/Button.lua
+
+src/Core/Report.lua
+src/Core/Events.lua
+src/Core/Commands.lua

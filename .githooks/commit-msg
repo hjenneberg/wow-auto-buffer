@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+INPUT_FILE=$1
+START_LINE=`head -n1 $INPUT_FILE`
+
+PATTERN="^(feat|fix|chore|docs|refactor|test|style|build|ci)!?:"
+if ! [[ "$START_LINE" =~ $PATTERN ]]; then
+    echo "Fehlerhafte Commit-Message: Message muss mit einem CC-Präfix beginnen."
+    exit 1
+fi
+
+PATTERN="${PATTERN}\s"
+if ! [[ "$START_LINE" =~ $PATTERN ]]; then
+    echo "Fehlerhafte Commit-Message: Nach dem Präfix muss ein Leerzeichen folgen."
+    exit 1
+fi
+
+PATTERN="${PATTERN}[A-ZÜÖÄ]"
+if ! [[ "$START_LINE" =~ $PATTERN ]]; then
+    echo "Fehlerhafte Commit-Message: Das eigentliche Subject muss mit einem Großbuchstaben beginnen."
+    exit 1
+fi
+

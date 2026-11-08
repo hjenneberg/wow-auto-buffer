@@ -1,0 +1,17 @@
+{
+    "name": "wow-auto-buffer",
+    "version": "0.1.0",
+    "description": "A World of Warcraft addon that buffs nearby players missing your buff, one key press at a time",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hjenneberg/wow-auto-buffer.git"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/hjenneberg/wow-auto-buffer/issues"
+    },
+    "dependencies": {
+        "@changesets/cli": "^3.0.3"
+    }
+}

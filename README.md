@@ -1,0 +1,73 @@
+<div align="center">
+
+# AutoBuffer
+
+A World of Warcraft addon that buffs nearby players who are missing your buff, one key press at a time.
+
+· [Changelog](./CHANGELOG.md) ·
+
+[![Version 0.1.0][github-release-shield]][github-release-link]
+
+</div>
+
+## 👋🏻 Welcome
+
+Buffing every player you meet is a nice thing to do, but targeting each of them by hand gets tedious. AutoBuffer finds
+the next player in range who is missing your buff. You only press one key.
+
+## ✨ Features
+
+- Finds the next friendly player in range who is missing the selected buff
+- One key press or click casts exactly one buff (no automation)
+- Buff presets for Priest, Mage, Druid, Paladin, Warlock and Shaman, or any other spell by name or ID
+- Group versions (e.g. Prayer of Fortitude) count as "already buffed"
+- Buffs other players via their nameplates
+- Optionally includes yourself and your group/raid
+- Shows how many players in range still need the buff
+- Optional chat report of each buff, with player names in class colors
+
+## 📦 Download & Installation
+
+[Download the current version][github-release-link] from GitHub and drop the contents of the folder into your WoW
+addons folder.
+
+## 🔨 Usage
+
+### Button
+
+- Left click: buff the next player
+- Right click: switch to the next buff of your class
+- [Shift] + drag: move the button
+
+### Key binding
+
+Options > Keybindings > AddOns > AutoBuffer > "Buff next player"
+
+### Slash commands
+
+- Use `/autobuff` to show the help and the buffs available to your class
+- Use `/autobuff <number>` to pick a buff from that list
+- Use `/autobuff spell <name or ID>` to pick any spell
+- Use `/autobuff others` to toggle buffing other players (requires friendly nameplates, [Shift] + V)
+- Use `/autobuff group` to toggle yourself and your group/raid (buffing and report)
+- Use `/autobuff report` to toggle the chat report
+- Use `/autobuff hide` to hide the button (the key binding still works)
+- Use `/autobuff show` to show the button after you have hidden it
+- Use `/autobuff reset` to move the button back to its initial position
+
+`/abuff` works as a short alias.
+
+### Limitations
+
+- Addons can't change the target while you are in combat. The button then buffs the last player it picked.
+- WoW Forever does not let addons cast directly on nameplates. Other players are therefore targeted by their full name
+  for the cast, then your previous target is restored.
+
+## License
+
+MIT
+
+<!-- Links -->
+
+[github-release-shield]: https://img.shields.io/badge/version-0.1.0-blue?color=369eff&labelColor=black&logo=github
+[github-release-link]: https://github.com/hjenneberg/wow-auto-buffer/releases

@@ -1,0 +1,4 @@
+<Bindings>
+	<Binding name="CLICK AutoBufferButton:LeftButton" header="AUTOBUFFER" category="ADDONS">
+	</Binding>
+</Bindings>
