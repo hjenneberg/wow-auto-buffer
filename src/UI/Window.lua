@@ -14,7 +14,7 @@ local ROW_SPACING = 8
 local ACHIEVEMENT_HEIGHT = 44
 local CATEGORY_HEIGHT = 26
 local BAR_WIDTH = 120
-local DEFAULT_ICON = "Interface\\Icons\\Spell_Holy_WordFortitude"
+local PORTRAIT_ICON = "Interface\\Icons\\INV_Misc_Gift_01" -- class-neutral: buffs are gifts
 local ICON_UNLOCKED = "Interface\\RaidFrame\\ReadyCheck-Ready"
 local ICON_LOCKED = "Interface\\RaidFrame\\ReadyCheck-Waiting"
 
@@ -114,7 +114,7 @@ local function CreateWindowFrame()
 	return frame
 end
 
--- Shows the icon of the selected buff in the round portrait of the frame template.
+-- Shows the addon icon in the round portrait of the frame template.
 -- SetPortraitToTexture leaves it empty on Forever, so the icon is set directly and
 -- cut to a circle with a mask (as WhatsTraining does).
 local function UpdatePortrait()
@@ -125,7 +125,7 @@ local function UpdatePortrait()
 		return
 	end
 
-	portrait:SetTexture(addon.Buffs:GetCurrent().icon or DEFAULT_ICON)
+	portrait:SetTexture(PORTRAIT_ICON)
 
 	if portrait.autoBufferMask or not portrait.AddMaskTexture then
 		return
