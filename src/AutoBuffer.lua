@@ -21,6 +21,14 @@ function addon.Highlight(text)
 	return addon.ColorHighlight .. text .. addon.ColorEnd
 end
 
+-- 1234567 -> "1,234,567"
+function addon.FormatNumber(number)
+	local reversed = tostring(math.floor(number)):reverse():gsub("(%d%d%d)", "%1,")
+	local formatted = reversed:reverse():gsub("^,", "")
+
+	return formatted
+end
+
 function addon.Print(text)
 	print(addon.ColorPrefix .. addonName .. ":" .. addon.ColorEnd .. " " .. addon.Gray(text))
 end
