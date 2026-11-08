@@ -13,12 +13,15 @@ src/Util/Api.lua
 
 src/Data/Presets.lua
 src/Data/Stats.lua
+src/Data/AchievementList.lua
 
 src/Core/Buffs.lua
 src/Core/Scanner.lua
+src/Core/Achievements.lua
 
 src/UI/Button.lua
 src/UI/StatsView.lua
+src/UI/AchievementsView.lua
 
 src/Core/Report.lua
 src/Core/Casts.lua

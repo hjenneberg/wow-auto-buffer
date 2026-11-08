@@ -22,6 +22,7 @@ EventFrame:SetScript("OnEvent", function(_, event, ...)
 		addon.accountDb = AutoBufferDB
 
 		addon.Stats:Initialize(addon.db, addon.accountDb)
+		addon.Achievements:Initialize(addon.accountDb)
 
 		if addon.db.nameplates == nil then
 			addon.db.nameplates = true
@@ -36,6 +37,11 @@ EventFrame:SetScript("OnEvent", function(_, event, ...)
 
 	if not addon.db then
 		return
+	end
+
+	-- Spells are known at login, so achievements depending on them can be checked now
+	if event == "PLAYER_LOGIN" then
+		addon.Achievements:CheckAll(true)
 	end
 
 	-- Logged in, new spells learned or combat ended: pick a default buff if still missing

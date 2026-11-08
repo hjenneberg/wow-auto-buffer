@@ -27,6 +27,7 @@ the next player in range who is missing your buff. You only press one key.
 - Optional chat report of each buff, with player names in class colors
 - Statistics per character and for all characters: buffs per spell, different players, top players, classes, levels,
   zones, streaks and records
+- 25 account-wide achievements, from your first buff to 10,000 buffs
 
 ## 📦 Download & Installation
 
@@ -56,6 +57,8 @@ Options > Keybindings > AddOns > AutoBuffer > "Buff next player"
 - Use `/autobuff stats` to show the statistics of this character
 - Use `/autobuff stats account` to show the statistics of all characters
 - Use `/autobuff stats reset` to delete the statistics of this character (the account totals are kept)
+- Use `/autobuff achievements` to show your achievements and the next goal of each category
+- Use `/autobuff achievements all` to show all achievements with their progress
 - Use `/autobuff hide` to hide the button (the key binding still works)
 - Use `/autobuff show` to show the button after you have hidden it
 - Use `/autobuff reset` to move the button back to its initial position
@@ -69,6 +72,23 @@ button apply: yourself and your group/raid only count when `/autobuff group` is 
 
 The names of buffed players are saved locally in your SavedVariables to count different players and to show your top
 players.
+
+### Achievements
+
+Achievements are shared by all your characters and are checked against the account-wide statistics. When you unlock
+one, it is announced in the chat with a sound. Achievements your existing statistics already fulfil are unlocked at
+login without a separate announcement.
+
+| Category | Achievements                                                          |
+| -------- | --------------------------------------------------------------------- |
+| Buffs    | 1, 10, 100, 500, 1,000, 5,000 and 10,000 buffs                        |
+| Players  | 10, 50, 100, 500 and 1,000 different players                          |
+| Loyalty  | The same player 10 and 25 times                                       |
+| Classes  | A player of every class                                               |
+| Zones    | 10 and 25 different zones                                             |
+| Speed    | 10 and 20 buffs within one minute, 100 buffs in one session           |
+| Streaks  | 7 and 30 days in a row                                                |
+| Special  | 50 buffs on players below level 10, a buff between midnight and 4 a.m., every buff of your class |
 
 ### Limitations
 

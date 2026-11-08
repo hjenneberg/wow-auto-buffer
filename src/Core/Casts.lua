@@ -53,6 +53,7 @@ local function OnFinished(event, castGUID)
 	if event == "UNIT_SPELLCAST_SUCCEEDED" then
 		addon.Stats:RecordSuccess(cast)
 		addon.Report:Success(cast)
+		addon.Achievements:CheckAll()
 	else
 		addon.Stats:RecordFailure(cast)
 		addon.Report:Failure(cast)

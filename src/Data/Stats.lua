@@ -29,6 +29,7 @@ local function Ensure(stats)
 	stats.levels = stats.levels or {} -- player level -> count
 	stats.zones = stats.zones or {} -- zone name -> count
 	stats.days = stats.days or {} -- "YYYY-MM-DD" -> count
+	stats.hours = stats.hours or {} -- hour of the day (0-23) -> count
 
 	return stats
 end
@@ -88,6 +89,7 @@ local function Add(stats, cast, zone, today, now, buffsLastMinute)
 	end
 
 	Increment(stats.days, today)
+	Increment(stats.hours, tonumber(date("%H", now)))
 
 	stats.bestMinute = math.max(stats.bestMinute, buffsLastMinute)
 	stats.bestSession = math.max(stats.bestSession, session.total)

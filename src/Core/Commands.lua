@@ -29,6 +29,8 @@ local function PrintHelp()
 	PrintCommand("stats", "Show the statistics of this character")
 	PrintCommand("stats account", "Show the statistics of all characters")
 	PrintCommand("stats reset", "Delete the statistics of this character")
+	PrintCommand("achievements", "Show your achievements")
+	PrintCommand("achievements all", "Show all achievements with their progress")
 	PrintCommand("show | hide", "Show or hide the button")
 	PrintCommand("reset", "Move the button back to its initial position")
 	addon.PrintLine("Key binding: Options > Keybindings > AddOns > AutoBuffer")
@@ -97,6 +99,14 @@ local function ShowStats(argument)
 	end
 end
 
+local function ShowAchievements(argument)
+	if argument:lower() == "all" then
+		addon.AchievementsView:PrintAll()
+	else
+		addon.AchievementsView:PrintSummary()
+	end
+end
+
 local function ShowButton()
 	addon.db.hidden = false
 	addon.Button:ApplyVisibility()
@@ -119,6 +129,7 @@ local commands = {
 	group = ToggleGroup,
 	report = ToggleReport,
 	stats = ShowStats,
+	achievements = ShowAchievements,
 	show = ShowButton,
 	hide = HideButton,
 	reset = ResetPosition,
