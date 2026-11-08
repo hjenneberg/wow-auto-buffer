@@ -83,12 +83,6 @@ local function CreateWindowFrame()
 
 	title:SetText(addonName)
 
-	local portrait = frame.portrait or (frame.PortraitContainer and frame.PortraitContainer.portrait)
-
-	if portrait then
-		pcall(SetPortraitToTexture, portrait, addon.Buffs:GetCurrent().icon or DEFAULT_ICON)
-	end
-
 	frame:SetSize(WIDTH, HEIGHT)
 	frame:SetFrameStrata("DIALOG")
 	frame:SetToplevel(true)
@@ -118,6 +112,35 @@ local function CreateWindowFrame()
 	end
 
 	return frame
+end
+
+-- Shows the icon of the selected buff in the round portrait of the frame template.
+-- SetPortraitToTexture leaves it empty on Forever, so the icon is set directly and
+-- cut to a circle with a mask (as WhatsTraining does).
+local function UpdatePortrait()
+	local container = win.PortraitContainer
+	local portrait = win.portrait or (container and container.portrait)
+
+	if not portrait then
+		return
+	end
+
+	portrait:SetTexture(addon.Buffs:GetCurrent().icon or DEFAULT_ICON)
+
+	if portrait.autoBufferMask or not portrait.AddMaskTexture then
+		return
+	end
+
+	local ok, mask = pcall(portrait:GetParent().CreateMaskTexture, portrait:GetParent())
+
+	if not ok or not mask then
+		return
+	end
+
+	mask:SetAllPoints((container and container.CircleMask) or portrait)
+	mask:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+	portrait:AddMaskTexture(mask)
+	portrait.autoBufferMask = mask
 end
 
 local function CreateTab(index, text)
@@ -434,6 +457,7 @@ function Window:Refresh()
 	end
 
 	UpdateScopeButtons()
+	UpdatePortrait()
 
 	if selectedTab == TAB_ACHIEVEMENTS then
 		RenderAchievements()
