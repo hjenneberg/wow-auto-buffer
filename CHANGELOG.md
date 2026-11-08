@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added active days, streaks and records (per minute, per session) to the statistics
 - Added today's and total buffs to the button tooltip
 - Added `/autobuff stats reset` to delete the statistics of the current character
+- Added the busiest hour to the statistics
+- Added 25 account-wide achievements in 8 categories, announced in the chat with a sound
+- Added `/autobuff achievements` and `/autobuff achievements all` to show achievements and their progress
+- Added the number of unlocked achievements to the button tooltip
 
 ## [0.1.0] - 2026-11-08
 

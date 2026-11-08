@@ -160,6 +160,11 @@ function StatsView:Print(scope)
 			"best streak " .. Number(Stats:GetBestStreak(stats)),
 		})
 	)
+	if next(stats.hours) then
+		local busiest = addon.Stats.GetTop(stats.hours, 1)[1]
+		Line("Busiest hour", Value(string.format("%02d:00", busiest.key)) .. " (" .. Number(busiest.count) .. " buffs)")
+	end
+
 	Line(
 		"Records",
 		Join({
