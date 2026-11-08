@@ -34,6 +34,7 @@ local function OnSent(target, castGUID, spellID)
 
 	-- Class and level are read now, the unit may be gone when the cast finishes
 	pending[castGUID] = {
+		guid = UnitGUID(unit),
 		name = who,
 		class = class,
 		level = UnitLevel(unit),
@@ -56,6 +57,7 @@ local function OnFinished(event, castGUID)
 		addon.Achievements:CheckAll()
 		addon.Window:Refresh()
 	else
+		addon.Scanner:Skip(cast.guid)
 		addon.Stats:RecordFailure(cast)
 		addon.Report:Failure(cast)
 		addon.Window:Refresh()

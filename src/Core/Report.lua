@@ -25,5 +25,8 @@ function Report:Failure(cast)
 			.. cast.spell
 			.. " on "
 			.. addon.Api.ColorByClass(cast.name, cast.class)
+			.. " - skipped for "
+			.. addon.Scanner.SKIP_SECONDS
+			.. " seconds"
 	)
 end

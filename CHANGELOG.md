@@ -21,6 +21,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added a window with tabs for statistics (this character or all characters) and achievements with progress bars
   (`/autobuff window` or Alt-click on the button)
 
+### Changed
+
+- Players a buff failed on (e.g. out of sight or with a stronger buff) are skipped for 60 seconds, so the next click
+  picks another player
+
 ## [0.1.0] - 2026-11-08
 
 ### Added

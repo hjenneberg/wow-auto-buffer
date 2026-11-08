@@ -4,6 +4,35 @@ local addonName, addon = ...
 local Scanner = {}
 addon.Scanner = Scanner
 
+-- Players a buff failed on (out of sight, stronger buff, ...) are skipped for a
+-- while, so the next click picks someone else instead of failing again
+local SKIP_SECONDS = 60
+local skipped = {} -- GUID -> GetTime() until which the player is skipped
+
+Scanner.SKIP_SECONDS = SKIP_SECONDS
+
+local function IsSkipped(guid)
+	local skipUntil = skipped[guid]
+
+	if not skipUntil then
+		return false
+	end
+
+	if GetTime() >= skipUntil then
+		skipped[guid] = nil
+
+		return false
+	end
+
+	return true
+end
+
+function Scanner:Skip(guid)
+	if guid then
+		skipped[guid] = GetTime() + SKIP_SECONDS
+	end
+end
+
 local function GetGroupUnits()
 	local list = {}
 
@@ -52,6 +81,10 @@ local function NeedsBuff(unit, seen, buff)
 	end
 
 	seen[guid] = true
+
+	if IsSkipped(guid) then
+		return false
+	end
 
 	if not UnitCanAssist("player", unit) then
 		return false
