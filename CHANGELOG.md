@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added 25 account-wide achievements in 8 categories, announced in the chat with a sound
 - Added `/autobuff achievements` and `/autobuff achievements all` to show achievements and their progress
 - Added the number of unlocked achievements to the button tooltip
+- Added a window with tabs for statistics (this character or all characters) and achievements with progress bars
+  (`/autobuff window` or Alt-click on the button)
 
 ## [0.1.0] - 2026-11-08
 

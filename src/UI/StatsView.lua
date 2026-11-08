@@ -1,6 +1,6 @@
 local addonName, addon = ...
 
--- Prints the statistics to the chat
+-- Builds the statistics for the chat and the window
 local StatsView = {}
 addon.StatsView = StatsView
 
@@ -16,9 +16,6 @@ local function Number(number)
 	return Value(addon.FormatNumber(number))
 end
 
-local function Line(label, text)
-	addon.PrintLine("   " .. label .. ": " .. text)
-end
 
 local function Join(parts)
 	return table.concat(parts, SEPARATOR)
@@ -103,26 +100,25 @@ local function ZonesText(stats)
 	return Join(parts)
 end
 
-function StatsView:Print(scope)
+-- The statistics as rows of { label = ..., text = ... }, used by the chat and the window.
+-- Returns the rows and a message for when nothing was recorded yet.
+function StatsView:GetRows(scope)
 	local Stats = addon.Stats
 	local stats = Stats:Get(scope)
 	local session = Stats:GetSession()
+	local rows = {}
 
-	if scope == "account" then
-		addon.Print("Statistics (all characters)")
-	else
-		addon.Print("Statistics (this character)")
+	local function Add(label, text)
+		rows[#rows + 1] = { label = label, text = text }
 	end
 
 	local attempts = stats.total + stats.failed
 
 	if attempts == 0 then
-		addon.PrintLine("   No buffs recorded yet.")
-
-		return
+		return rows, "No buffs recorded yet."
 	end
 
-	Line(
+	Add(
 		"Buffs",
 		Join({
 			Number(stats.total) .. " total",
@@ -130,29 +126,29 @@ function StatsView:Print(scope)
 			"this session " .. Number(session.total),
 		})
 	)
-	Line(
+	Add(
 		"Success rate",
 		Value(string.format("%.1f%%", stats.total / attempts * 100)) .. " (" .. Number(stats.failed) .. " failed)"
 	)
-	Line("Players", Number(stats.uniquePlayers) .. " different")
+	Add("Players", Number(stats.uniquePlayers) .. " different")
 
 	if stats.total == 0 then
-		return
+		return rows
 	end
 
-	Line("Spells", SpellsText(stats))
-	Line("Top players", PlayersText(stats))
-	Line("Classes", ClassesText(stats))
+	Add("Spells", SpellsText(stats))
+	Add("Top players", PlayersText(stats))
+	Add("Classes", ClassesText(stats))
 
 	if next(stats.levels) then
-		Line("Levels", LevelsText(stats))
+		Add("Levels", LevelsText(stats))
 	end
 
 	if next(stats.zones) then
-		Line("Top zones", ZonesText(stats))
+		Add("Top zones", ZonesText(stats))
 	end
 
-	Line(
+	Add(
 		"Days",
 		Join({
 			Number(Stats:GetActiveDays(stats)) .. " active",
@@ -160,19 +156,43 @@ function StatsView:Print(scope)
 			"best streak " .. Number(Stats:GetBestStreak(stats)),
 		})
 	)
+
 	if next(stats.hours) then
 		local busiest = addon.Stats.GetTop(stats.hours, 1)[1]
-		Line("Busiest hour", Value(string.format("%02d:00", busiest.key)) .. " (" .. Number(busiest.count) .. " buffs)")
+		Add("Busiest hour", Value(string.format("%02d:00", busiest.key)) .. " (" .. Number(busiest.count) .. " buffs)")
 	end
 
-	Line(
+	Add(
 		"Records",
 		Join({
 			Number(stats.bestMinute) .. " per minute",
 			Number(stats.bestSession) .. " per session",
 		})
 	)
-	Line("First buff", FormatTime(stats.firstTime) .. SEPARATOR .. "last buff " .. FormatTime(stats.lastTime))
+	Add("First buff", FormatTime(stats.firstTime))
+	Add("Last buff", FormatTime(stats.lastTime))
+
+	return rows
+end
+
+function StatsView:Print(scope)
+	if scope == "account" then
+		addon.Print("Statistics (all characters)")
+	else
+		addon.Print("Statistics (this character)")
+	end
+
+	local rows, message = self:GetRows(scope)
+
+	if message then
+		addon.PrintLine("   " .. message)
+
+		return
+	end
+
+	for _, row in ipairs(rows) do
+		addon.PrintLine("   " .. row.label .. ": " .. row.text)
+	end
 end
 
 -- Short line for the button tooltip

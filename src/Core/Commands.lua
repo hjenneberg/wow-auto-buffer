@@ -26,6 +26,7 @@ local function PrintHelp()
 	PrintCommand("others", "Toggle other players (nameplates): " .. OnOff(addon.db.nameplates))
 	PrintCommand("group", "Toggle yourself and your group/raid (buffing and report): " .. OnOff(addon.db.group))
 	PrintCommand("report", "Toggle chat report of each buff: " .. OnOff(addon.db.report))
+	PrintCommand("window", "Open the window with statistics and achievements")
 	PrintCommand("stats", "Show the statistics of this character")
 	PrintCommand("stats account", "Show the statistics of all characters")
 	PrintCommand("stats reset", "Delete the statistics of this character")
@@ -107,6 +108,10 @@ local function ShowAchievements(argument)
 	end
 end
 
+local function ToggleWindow()
+	addon.Window:Toggle()
+end
+
 local function ShowButton()
 	addon.db.hidden = false
 	addon.Button:ApplyVisibility()
@@ -130,6 +135,7 @@ local commands = {
 	report = ToggleReport,
 	stats = ShowStats,
 	achievements = ShowAchievements,
+	window = ToggleWindow,
 	show = ShowButton,
 	hide = HideButton,
 	reset = ResetPosition,
