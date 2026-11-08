@@ -28,6 +28,7 @@ the next player in range who is missing your buff. You only press one key.
 - Statistics per character and for all characters: buffs per spell, different players, top players, classes, levels,
   zones, streaks and records
 - 25 account-wide achievements, from your first buff to 10,000 buffs
+- A window with tabs for statistics and achievements
 
 ## 📦 Download & Installation
 
@@ -40,6 +41,7 @@ addons folder.
 
 - Left click: buff the next player
 - Right click: switch to the next buff of your class
+- [Alt] + click: open the window with statistics and achievements (out of combat)
 - [Shift] + drag: move the button
 
 ### Key binding
@@ -54,7 +56,8 @@ Options > Keybindings > AddOns > AutoBuffer > "Buff next player"
 - Use `/autobuff others` to toggle buffing other players (requires friendly nameplates, [Shift] + V)
 - Use `/autobuff group` to toggle yourself and your group/raid (buffing and report)
 - Use `/autobuff report` to toggle the chat report
-- Use `/autobuff stats` to show the statistics of this character
+- Use `/autobuff window` to open the window with statistics and achievements
+- Use `/autobuff stats` to show the statistics of this character in the chat
 - Use `/autobuff stats account` to show the statistics of all characters
 - Use `/autobuff stats reset` to delete the statistics of this character (the account totals are kept)
 - Use `/autobuff achievements` to show your achievements and the next goal of each category

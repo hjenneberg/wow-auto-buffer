@@ -16,6 +16,7 @@ _G["BINDING_NAME_CLICK " .. BUTTON_NAME .. ":LeftButton"] = "Buff next player"
 local frame
 local timeSinceLastUpdate = 0
 local lastCycle = 0
+local lastToggle = 0
 local lastMessage = 0
 local lastUnit -- unit of the last cast set up by the button (used by the report)
 
@@ -54,6 +55,18 @@ local function OnPreClick(self, mouseButton)
 	-- Shift + mouse on the button = move it, don't cast
 	if IsShiftKeyDown() and self:IsMouseOver() then
 		self:SetAttribute("type", nil)
+
+		return
+	end
+
+	-- Alt + click on the button = open the window, don't cast
+	if IsAltKeyDown() and self:IsMouseOver() then
+		self:SetAttribute("type", nil)
+
+		if GetTime() - lastToggle > 0.3 then
+			lastToggle = GetTime()
+			addon.Window:Toggle()
+		end
 
 		return
 	end
@@ -115,6 +128,7 @@ local function OnEnter(self)
 	GameTooltip:AddLine(addon.AchievementsView:GetSummary(), 1, 0.82, 0)
 	GameTooltip:AddLine("Left-click: buff next player", 0.7, 0.7, 0.7)
 	GameTooltip:AddLine("Right-click: change buff", 0.7, 0.7, 0.7)
+	GameTooltip:AddLine("Alt-click: statistics and achievements", 0.7, 0.7, 0.7)
 	GameTooltip:AddLine("Shift + drag: move", 0.7, 0.7, 0.7)
 	GameTooltip:Show()
 end

@@ -54,9 +54,11 @@ local function OnFinished(event, castGUID)
 		addon.Stats:RecordSuccess(cast)
 		addon.Report:Success(cast)
 		addon.Achievements:CheckAll()
+		addon.Window:Refresh()
 	else
 		addon.Stats:RecordFailure(cast)
 		addon.Report:Failure(cast)
+		addon.Window:Refresh()
 	end
 end
 

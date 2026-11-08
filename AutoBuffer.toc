@@ -22,6 +22,7 @@ src/Core/Achievements.lua
 src/UI/Button.lua
 src/UI/StatsView.lua
 src/UI/AchievementsView.lua
+src/UI/Window.lua
 
 src/Core/Report.lua
 src/Core/Casts.lua
