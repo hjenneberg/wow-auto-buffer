@@ -21,6 +21,8 @@ the next player in range who is missing your buff. You only press one key.
 - One key press or click casts exactly one buff (no automation)
 - Buff presets for Priest, Mage, Druid, Paladin, Warlock and Shaman, or any other spell by name or ID
 - Group versions (e.g. Prayer of Fortitude) count as "already buffed"
+- If a buff fails on a player (e.g. out of sight), that player is skipped for 60 seconds and the next click picks
+  someone else
 - Buffs other players via their nameplates
 - Optionally includes yourself and your group/raid
 - Shows how many players in range still need the buff
